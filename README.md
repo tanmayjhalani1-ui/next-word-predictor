@@ -1,3 +1,13 @@
+<div align="center">
+  <img src="assets/portfolio-banner.svg" alt="Next Word Prediction — Tanmay Jhalani" width="100%" />
+</div>
+
+<div align="center">
+  <strong>Designed and engineered by Tanmay Jhalani</strong> · <a href="https://github.com/tanmayjhalani1-ui">GitHub Profile</a>
+</div>
+
+---
+
 # Next Word Prediction with LSTM
 
 An end-to-end next-token prediction project using TensorFlow/Keras LSTMs. It trains on a small CampusX DSMP FAQ-style corpus, compares two recurrent architectures, tracks experiments with MLflow, and serves suggestions through Streamlit and FastAPI.
