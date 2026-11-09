@@ -1,0 +1,8 @@
+services:
+  next-word-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./artifacts:/app/artifacts:ro
+    restart: unless-stopped
