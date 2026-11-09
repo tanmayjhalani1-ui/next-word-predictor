@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Compile application
+        run: python -m compileall -q src api app.py
+      - name: Validate model architecture
+        run: |
+          python - <<'PY'
+          from src.train import build_model
+          model = build_model(vocab_size=250, sequence_length=20, variant="lstm_v1")
+          assert model.input_shape == (None, 20)
+          assert model.output_shape == (None, 250)
+          print("LSTM architecture valid:", model.count_params())
+          PY
